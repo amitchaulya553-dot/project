@@ -1,4 +1,5 @@
-<?php include 'header.php';
+<?php
+include 'header.php';
 session_start();
 ?>
 
@@ -10,57 +11,51 @@ session_start();
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav ms-auto">
-        <li class="nav-item"><a class="nav-link active" href="index.php">Home</a></li>
-        <li class="nav-item"><a class="nav-link" href="index.php">Blogs</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.php">Home</a></li>
+        <
         <li class="nav-item"><a class="nav-link" href="login.php">Login</a></li>
-        <li class="nav-item"><a class="nav-link" href="registration.php">Register</a></li>
+        <li class="nav-item"><a class="nav-link active" href="registration.php">Register</a></li>
       </ul>
     </div>
   </div>
 </nav>
 
-
-<div class="container">
-  <div class="inner">
-    <?php
-if(isset($_SESSION['error'])){
-    echo $_SESSION['error'];
-    unset($_SESSION['error']);
-}
-?>
-        <h1 style="margin-right: 245px;color:green;">Sign Up</h1>
-    
-<form style="width:35%; margin-top: 20px;" action="fetchdata.php" method="post">
- 
-    <div class="mb-3">
-      
-      <input type="text" id="disabledTextInput" class="form-control" placeholder="Username" name="username" >
+<div class="container d-flex justify-content-center align-items-center" style="min-height:80vh;">
+  <div class="card shadow-lg" style="width: 450px;">
+    <div class="card-header bg-primary text-white text-center">
+      <h4>Sign Up</h4>
     </div>
-    <div class="mb-3">
-    <div class="mb-3">
-      
-      <input type="email" id="disabledTextInput" class="form-control" placeholder="Enter your email" name="email" >
+    <div class="card-body">
+      <?php
+      if(isset($_SESSION['error'])){
+          echo "<div class='alert alert-danger'>".$_SESSION['error']."</div>";
+          unset($_SESSION['error']);
+      }
+      ?>
+      <form action="fetchdata.php" method="post">
+        <div class="mb-3">
+          <label class="form-label">Username</label>
+          <input type="text" class="form-control" name="username" placeholder="Enter username" required>
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Email</label>
+          <input type="email" class="form-control" name="email" placeholder="Enter your email" required>
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Password</label>
+          <input type="password" class="form-control" name="password" placeholder="Enter password" required>
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Confirm Password</label>
+          <input type="password" class="form-control" name="confirm_password" placeholder="Confirm password" required>
+        </div>
+        <button type="submit" name="submit" class="btn btn-primary w-100">Sign Up</button>
+      </form>
     </div>
-    <div class="mb-3">
-      
-      <input type="password" id="disabledTextInput" class="form-control" placeholder="Password" name="password" >
+    <div class="card-footer text-center">
+      <small>Already have an account? <a href="login.php">Login</a></small>
     </div>
-    <div class="mb-3">
-      
-      <input type="password" id="disabledTextInput" class="form-control" placeholder="Confirm Password" name="confirm_password" >
-    </div>
-   
-
-    <div class="mb-3">
-  <p>Already have an account?<a href="login.php">Login</a></p>
-    </div>
-    
-  </fieldset>
-  <button type="submit" class="btn btn-primary"style="margin-left: 120px; width:160px;"name="submit">Sign Up</button>
-</form>
-
-</div>
-
+  </div>
 </div>
 
 <?php include 'footer.php'; ?>

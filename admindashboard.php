@@ -5,6 +5,11 @@ if($_SESSION["role"]!="admin"){
     }
     include 'header.php';
     include 'db.php';
+    $id=$_SESSION["user_id"];
+    $fetch=$con->prepare("SELECT * FROM user WHERE id=$id");
+    $fetch->execute();
+    $data=$fetch->fetch();
+
   ?>
 
 <!DOCTYPE html>
@@ -30,15 +35,15 @@ if($_SESSION["role"]!="admin"){
   <h4 class="text-white mb-4">Admin Panel</h4>
   <a href="admindashboard.php">🏠 Dashboard</a>
   <a href="pending-blogs.php">📝 Approve Blogs</a>
-  <a href="manage-users.php">👥 Manage Users</a>
+  <!-- <a href="manage-users.php">👥 Manage Users</a> -->
   <a href="categories.php">📂 Categories</a>
-  <a href="reports.php">📊 Reports</a>
+  <!-- <a href="reports.php">📊 Reports</a> -->
 </div>
 
 <!-- Top Navbar -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
   <div class="container-fluid">
-    <span class="navbar-brand">Admin Dashboard</span>
+    <span class="navbar-brand">Welcome to <?=$data["username"];?></span>
     <div class="d-flex">
       <a href="logout.php" class="btn btn-light btn-sm">Logout</a>
     </div>
